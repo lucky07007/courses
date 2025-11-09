@@ -1,10 +1,13 @@
-/* style.css - Minimal Responsive Design */
+/* style.css - Clean, Simple, and Responsive Design */
 
 :root {
-    --primary-color: #007bff;
-    --secondary-color: #6c757d;
-    --background-color: #f8f9fa;
+    --primary-color: #007bff; /* Blue */
+    --secondary-color: #6c757d; /* Gray */
+    --success-color: #28a745; /* Green */
+    --background-color: #f8f9fa; 
     --text-color: #343a40;
+    --sidebar-bg: #ffffff;
+    --border-color: #dee2e6;
 }
 
 * {
@@ -14,52 +17,65 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.6;
 }
 
+/* --- Global Elements --- */
 #app-header {
-    background: #fff;
+    background: var(--sidebar-bg);
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #dee2e6;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 #main-content {
     padding: 20px;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
 }
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+.primary-btn:hover { background-color: #0056b3; }
+.primary-btn:disabled { background-color: var(--secondary-color); cursor: not-allowed; }
 
 /* --- Authentication Styles --- */
 .auth-container {
     max-width: 400px;
     margin: 50px auto;
     padding: 30px;
-    background: #fff;
+    background: var(--sidebar-bg);
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
-
 .auth-container input, .auth-container button {
     width: 100%;
-    padding: 10px;
     margin-bottom: 15px;
+}
+.auth-container input {
+    padding: 12px;
     border-radius: 4px;
-    border: 1px solid #ced4da;
+    border: 1px solid var(--border-color);
 }
-
-.auth-container button {
-    background-color: var(--primary-color);
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+.auth-container #login-btn { margin-top: 20px; }
 
 /* --- Dashboard Layout (Desktop) --- */
 .dashboard-layout {
@@ -68,24 +84,66 @@ body {
 }
 
 .sidebar {
-    flex: 0 0 250px; /* Fixed width sidebar on desktop */
-    background-color: #fff;
+    flex: 0 0 280px; /* Fixed width sidebar */
+    background-color: var(--sidebar-bg);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    height: fit-content;
 }
 
 .dashboard-main {
     flex-grow: 1;
 }
 
+.sidebar h3 {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.sidebar-list {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.sidebar-list li {
+    padding: 5px 0;
+    font-size: 0.95em;
+}
+
+.sidebar-list a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+.sidebar-list a:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+.star { color: gold; }
+
+.sidebar-btn {
+    background-color: var(--secondary-color);
+    color: white;
+    width: 100%;
+    margin-top: 15px;
+}
+
 /* --- Course Card and Progress Bar --- */
 .course-card {
-    background: #fff;
+    background: var(--sidebar-bg);
     padding: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     border-radius: 6px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.progress-text {
+    font-size: 0.9em;
+    color: var(--secondary-color);
+    margin: 5px 0;
 }
 
 .progress-bar-container {
@@ -93,27 +151,131 @@ body {
     background-color: #e9ecef;
     border-radius: 5px;
     overflow: hidden;
-    margin-top: 5px;
+    margin-bottom: 15px;
 }
 
 .progress-bar {
     height: 100%;
-    background-color: #28a745;
+    background-color: var(--success-color);
     transition: width 0.4s ease;
 }
 
-/* --- Responsive Breakpoint (Mobile View) --- */
-@media (max-width: 768px) {
-    .dashboard-layout {
-        flex-direction: column; /* Stacks sidebar and main content vertically */
+.course-link {
+    align-self: flex-start;
+    padding: 8px 12px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+/* --- Course Viewer Layout --- */
+.course-viewer-layout {
+    display: flex;
+    gap: 25px;
+}
+
+.course-sidebar {
+    flex: 0 0 300px;
+    background-color: var(--sidebar-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    height: fit-content;
+}
+
+.course-sidebar h2 {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.course-sidebar p {
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.lesson-list {
+    list-style: none;
+    margin-top: 15px;
+    padding-left: 0;
+}
+
+.lesson-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s;
+    font-size: 0.95em;
+}
+
+.lesson-item:hover {
+    background-color: #f1f1f1;
+}
+
+.lesson-icon {
+    margin-right: 10px;
+    color: var(--secondary-color);
+}
+
+.lesson-item.completed .lesson-icon {
+    color: var(--success-color);
+}
+
+.lesson-item.current {
+    background-color: var(--primary-color);
+    color: white;
+}
+.lesson-item.current .lesson-icon {
+    color: white;
+}
+
+.course-main-content {
+    flex-grow: 1;
+    background: var(--sidebar-bg);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.video-container {
+    margin-bottom: 20px;
+}
+
+.notes-section h3 {
+    margin-bottom: 10px;
+}
+
+.full-width-btn {
+    width: 100%;
+}
+
+/* --- Responsive Design (Mobile View) --- */
+@media (max-width: 900px) {
+    .dashboard-layout, .course-viewer-layout {
+        flex-direction: column; 
     }
 
-    .sidebar {
-        flex: 1 1 100%; /* Sidebar takes full width */
+    .sidebar, .course-sidebar {
+        flex: 1 1 100%; /* Full width */
         order: -1; /* Move sidebar above the main content on mobile */
     }
 
-    .dashboard-main {
-        padding-top: 0;
+    .course-sidebar {
+        /* Keep progress bar small on mobile sidebar */
+        .large-bar { display: none; }
+    }
+    
+    .course-main-content {
+        padding: 15px;
+    }
+    
+    .course-card {
+        padding: 15px;
     }
 }
